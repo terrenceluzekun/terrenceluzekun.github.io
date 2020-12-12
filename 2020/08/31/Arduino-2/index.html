@@ -15,7 +15,7 @@
 <meta property="og:description" content="In the last article about Arduino, I briefly introduce my project and propose my opinion of the relationship between Engineering and Economics. In this article, I want to how computer controls the dev">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-08-31T15:04:32.000Z">
-<meta property="article:modified_time" content="2020-08-31T15:05:13.184Z">
+<meta property="article:modified_time" content="2020-12-12T15:54:45.266Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Arduino 2">
 <meta name="twitter:card" content="summary">
@@ -90,50 +90,16 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>In the last article about Arduino, I briefly introduce my project and propose my opinion of the relationship between Engineering and Economics. In this article, I want to how computer controls the devices, how the codes work and the logic in the codes. A type C wire can connect the Arduino with computer. </p>
-<p>int Trig = 4;     </p>
-<p>int Echo = 5;    </p>
-<p>int cm;</p>
-<p>int dm;</p>
-<p>float temp;</p>
-<p>void setup() {</p>
-<p> // put your setup code here, to run once:</p>
-<p> Serial.begin(9600);</p>
-<p> pinMode(LED_BUILTIN, OUTPUT);  </p>
-<p> pinMode(Trig,OUTPUT);</p>
-<p> pinMode(Echo,INPUT);</p>
-<p>}</p>
-<p>void buzz(int times){</p>
-<p>digitalWrite(LED_BUILTIN,LOW);  </p>
-<p>  delay(times);</p>
-<p>  digitalWrite(LED_BUILTIN,HIGH);</p>
-<p>  delay(times);</p>
-<p>}</p>
-<p>void loop() {</p>
-<p> // put your main code here, to run repeatedly:</p>
-<p> digitalWrite(Trig,LOW);</p>
-<p> delay(2);  </p>
-<p> digitalWrite(Trig,HIGH);</p>
-<p> delay(10);    </p>
-<p> digitalWrite(Trig,LOW);</p>
-<p> temp = float(pulseIn(Echo,HIGH)); </p>
-<p> cm = (temp*17)/1000;</p>
-<p> Serial.println(cm);  </p>
-<p> dm = int(cm)/10%10;</p>
-<p> switch(dm){      </p>
-<p>  case 3:</p>
-<p>​    buzz(10);</p>
-<p>  break;</p>
-<p>  case 6:</p>
-<p>​    buzz(100);</p>
-<p>  break;</p>
-<p>  case 10:</p>
-<p>​    buzz(200);</p>
-<p>  break;</p>
-<p>  default:</p>
-<p>​    digitalWrite(buzz,HIGH);</p>
-<p>  break;</p>
-<p> }</p>
-<p>}</p>
+<p>A computing language called python can be used to control Arduino through computer. Metal wire is used to connect Arduino with electrical appliances and computer codes can control Arduino through a type C wire thus the electrical appliances. </p>
+<p>here are important parts of my codes.</p>
+<p>int Trig = 4;<br>int Echo = 5;<br>int cm;<br>int dm;<br>float temp;</p>
+<p>int i;<br>TM1637 tm1637(CLK,DIO); </p>
+<p>These codes are used to initialize the packages of engineering programs and define some units of measurement.  </p>
+<p>void buzz(int times){<br>    digitalWrite(LED_BUILTIN,LOW);<br>    delay(times);<br>    digitalWrite(LED_BUILTIN,HIGH);<br>    delay(times); </p>
+<p>this is the function for buzzer. </p>
+<p>  tm1637.display(0,int(cm/100%10));<br>  tm1637.display(1,int(cm/10%10));<br>  tm1637.display(2,int(cm%10));</p>
+<p>this is codes for display of distance, different digits represent different numbers. </p>
+<p>There is also a logic called “if” statement, which is important for parking distance control works. For instance, quantitatively, if the object is 2 centimeters near the sensor, then the frequency of buzzer is 200 hertz. </p>
 
       
     </div>
@@ -148,15 +114,6 @@
   
     
 <nav id="article-nav">
-  
-    <a href="/2020/09/06/additional-edition-of-Arduino/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          additional edition of Arduino
-        
-      </div>
-    </a>
   
   
     <a href="/2020/08/30/Arduino/" id="article-nav-older" class="article-nav-link-wrap">
@@ -199,7 +156,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li></ul>
     </div>
   </div>
 
@@ -212,14 +169,6 @@
       <ul>
         
           <li>
-            <a href="/2020/09/19/development-of-industry-of-express-delivery/">development of industry of express delivery</a>
-          </li>
-        
-          <li>
-            <a href="/2020/09/06/additional-edition-of-Arduino/">additional edition of Arduino</a>
-          </li>
-        
-          <li>
             <a href="/2020/08/31/Arduino-2/">Arduino 2</a>
           </li>
         
@@ -229,6 +178,14 @@
         
           <li>
             <a href="/2020/08/13/Airbnb-activity/">Airbnb activity</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/27/my-biggest-academic-improvement/">my biggest academic improvement</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/26/how-my-skills-help-me/">how my skills help me</a>
           </li>
         
       </ul>
